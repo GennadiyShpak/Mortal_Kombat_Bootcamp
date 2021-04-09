@@ -27,20 +27,26 @@ const player2 = new Player(
 
 const createPlayer = (name, palyer) => {
   const { nickName, hp, img } = palyer;
-  arena.insertAdjacentHTML(
-    'beforeend',
-    `<div class=${name}>
-  <div class="progressbar">
-      <div class="life"></div>
-      <div class="name">${nickName}</div>
-  </div>
-  <div class="character">
-      <img src=${img} />
-  </div>
-</div>`,
-  );
-  const life = document.querySelector(`.${name} div .life`);
+  const playerWrapper = document.createElement('div');
+  playerWrapper.classList.add(name);
+  const progressBar = document.createElement('div');
+  progressBar.classList.add('progressbar');
+  playerWrapper.append(progressBar);
+  const life = document.createElement('div');
+  life.classList.add('life');
   life.style.width = `${hp}%`;
+  progressBar.append(life);
+  const fighterName = document.createElement('div');
+  fighterName.classList.add('name');
+  fighterName.textContent = nickName;
+  progressBar.append(fighterName);
+  const character = document.createElement('div');
+  character.classList.add('character');
+  playerWrapper.append(character);
+  const picture = document.createElement('img');
+  picture.src = img;
+  character.append(picture);
+  arena.append(playerWrapper);
 };
 createPlayer('player1', player1);
 createPlayer('player2', player2);
