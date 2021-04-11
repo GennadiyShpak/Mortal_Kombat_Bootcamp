@@ -71,16 +71,15 @@ const damageHandler = player => {
   if (player.hp > 0) {
     playerLife.style.width = `${player.hp}%`;
     return;
-  } else {
-    randomBtn.disabled = true;
-    playerLife.style.width = 0;
-    if (player.player === 1 && player.hp <= 0) {
-      arena.appendChild(nameWinnerHandler(player2));
-    }
-    if (player.player === 2 && player.hp <= 0) {
-      arena.append(nameWinnerHandler(player1));
-    }
   }
+  if (player.player === 1 && player.hp <= 0) {
+    arena.appendChild(nameWinnerHandler(player2));
+  }
+  if (player.player === 2 && player.hp <= 0) {
+    arena.append(nameWinnerHandler(player1));
+  }
+  randomBtn.disabled = true;
+  playerLife.style.width = 0;
 };
 
 randomBtn.addEventListener('click', () => {
